@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTitle = new System.Windows.Forms.Label();
             this.gpbAnimalDetails = new System.Windows.Forms.GroupBox();
             this.btnClear = new System.Windows.Forms.Button();
@@ -102,7 +104,7 @@
             this.gpbAnimalDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpbAnimalDetails.Location = new System.Drawing.Point(18, 56);
             this.gpbAnimalDetails.Name = "gpbAnimalDetails";
-            this.gpbAnimalDetails.Size = new System.Drawing.Size(209, 248);
+            this.gpbAnimalDetails.Size = new System.Drawing.Size(209, 342);
             this.gpbAnimalDetails.TabIndex = 1;
             this.gpbAnimalDetails.TabStop = false;
             this.gpbAnimalDetails.Text = "Animal Details";
@@ -110,7 +112,7 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(140, 208);
+            this.btnClear.Location = new System.Drawing.Point(135, 305);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(61, 31);
             this.btnClear.TabIndex = 12;
@@ -120,7 +122,7 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(73, 208);
+            this.btnSave.Location = new System.Drawing.Point(68, 305);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(61, 31);
             this.btnSave.TabIndex = 11;
@@ -130,7 +132,7 @@
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(6, 208);
+            this.btnAdd.Location = new System.Drawing.Point(1, 305);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(61, 31);
             this.btnAdd.TabIndex = 10;
@@ -139,28 +141,28 @@
             // 
             // txtScore
             // 
-            this.txtScore.Location = new System.Drawing.Point(101, 167);
+            this.txtScore.Location = new System.Drawing.Point(101, 258);
             this.txtScore.Name = "txtScore";
             this.txtScore.Size = new System.Drawing.Size(100, 26);
             this.txtScore.TabIndex = 9;
             // 
             // txtAge
             // 
-            this.txtAge.Location = new System.Drawing.Point(101, 134);
+            this.txtAge.Location = new System.Drawing.Point(101, 205);
             this.txtAge.Name = "txtAge";
             this.txtAge.Size = new System.Drawing.Size(100, 26);
             this.txtAge.TabIndex = 8;
             // 
             // txtSpecies
             // 
-            this.txtSpecies.Location = new System.Drawing.Point(101, 101);
+            this.txtSpecies.Location = new System.Drawing.Point(101, 150);
             this.txtSpecies.Name = "txtSpecies";
             this.txtSpecies.Size = new System.Drawing.Size(100, 26);
             this.txtSpecies.TabIndex = 7;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(101, 67);
+            this.txtName.Location = new System.Drawing.Point(101, 93);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(100, 26);
             this.txtName.TabIndex = 6;
@@ -176,7 +178,7 @@
             // 
             this.lblScore.AutoSize = true;
             this.lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScore.Location = new System.Drawing.Point(6, 173);
+            this.lblScore.Location = new System.Drawing.Point(6, 264);
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(43, 16);
             this.lblScore.TabIndex = 4;
@@ -186,7 +188,7 @@
             // 
             this.lblAge.AutoSize = true;
             this.lblAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAge.Location = new System.Drawing.Point(6, 140);
+            this.lblAge.Location = new System.Drawing.Point(6, 211);
             this.lblAge.Name = "lblAge";
             this.lblAge.Size = new System.Drawing.Size(32, 16);
             this.lblAge.TabIndex = 3;
@@ -196,7 +198,7 @@
             // 
             this.lblSpecies.AutoSize = true;
             this.lblSpecies.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSpecies.Location = new System.Drawing.Point(6, 107);
+            this.lblSpecies.Location = new System.Drawing.Point(6, 156);
             this.lblSpecies.Name = "lblSpecies";
             this.lblSpecies.Size = new System.Drawing.Size(57, 16);
             this.lblSpecies.TabIndex = 2;
@@ -206,7 +208,7 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(6, 73);
+            this.lblName.Location = new System.Drawing.Point(6, 99);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(44, 16);
             this.lblName.TabIndex = 1;
@@ -232,7 +234,7 @@
             this.gpbDataView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpbDataView.Location = new System.Drawing.Point(244, 56);
             this.gpbDataView.Name = "gpbDataView";
-            this.gpbDataView.Size = new System.Drawing.Size(544, 248);
+            this.gpbDataView.Size = new System.Drawing.Size(840, 342);
             this.gpbDataView.TabIndex = 2;
             this.gpbDataView.TabStop = false;
             this.gpbDataView.Text = "Data View";
@@ -240,7 +242,7 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(230, 24);
+            this.btnSearch.Location = new System.Drawing.Point(369, 24);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(61, 31);
             this.btnSearch.TabIndex = 16;
@@ -251,7 +253,7 @@
             // 
             this.txtSearchID.Location = new System.Drawing.Point(83, 25);
             this.txtSearchID.Name = "txtSearchID";
-            this.txtSearchID.Size = new System.Drawing.Size(141, 26);
+            this.txtSearchID.Size = new System.Drawing.Size(280, 26);
             this.txtSearchID.TabIndex = 15;
             // 
             // lblSearch
@@ -267,7 +269,7 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(477, 24);
+            this.btnDelete.Location = new System.Drawing.Point(773, 25);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(61, 31);
             this.btnDelete.TabIndex = 13;
@@ -276,10 +278,38 @@
             // 
             // dgvAnimals
             // 
+            this.dgvAnimals.AllowUserToAddRows = false;
+            this.dgvAnimals.AllowUserToDeleteRows = false;
+            this.dgvAnimals.AllowUserToResizeColumns = false;
+            this.dgvAnimals.AllowUserToResizeRows = false;
+            this.dgvAnimals.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvAnimals.BackgroundColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAnimals.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgvAnimals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAnimals.DefaultCellStyle = dataGridViewCellStyle18;
+            this.dgvAnimals.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
+            this.dgvAnimals.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgvAnimals.Location = new System.Drawing.Point(6, 61);
+            this.dgvAnimals.MultiSelect = false;
             this.dgvAnimals.Name = "dgvAnimals";
-            this.dgvAnimals.Size = new System.Drawing.Size(532, 178);
+            this.dgvAnimals.ReadOnly = true;
+            this.dgvAnimals.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgvAnimals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAnimals.Size = new System.Drawing.Size(828, 275);
             this.dgvAnimals.TabIndex = 0;
             // 
             // gpbSummaryReport
@@ -303,9 +333,9 @@
             this.gpbSummaryReport.Controls.Add(this.btnGenerateSummary);
             this.gpbSummaryReport.Controls.Add(this.lblGenerateSummary);
             this.gpbSummaryReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbSummaryReport.Location = new System.Drawing.Point(18, 310);
+            this.gpbSummaryReport.Location = new System.Drawing.Point(18, 404);
             this.gpbSummaryReport.Name = "gpbSummaryReport";
-            this.gpbSummaryReport.Size = new System.Drawing.Size(764, 176);
+            this.gpbSummaryReport.Size = new System.Drawing.Size(717, 176);
             this.gpbSummaryReport.TabIndex = 3;
             this.gpbSummaryReport.TabStop = false;
             this.gpbSummaryReport.Text = "Summary Report";
@@ -314,7 +344,7 @@
             // 
             this.lblReleaseReadyValue.AutoSize = true;
             this.lblReleaseReadyValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReleaseReadyValue.Location = new System.Drawing.Point(700, 112);
+            this.lblReleaseReadyValue.Location = new System.Drawing.Point(660, 112);
             this.lblReleaseReadyValue.Name = "lblReleaseReadyValue";
             this.lblReleaseReadyValue.Size = new System.Drawing.Size(14, 16);
             this.lblReleaseReadyValue.TabIndex = 29;
@@ -324,7 +354,7 @@
             // 
             this.lblRecoveringValue.AutoSize = true;
             this.lblRecoveringValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecoveringValue.Location = new System.Drawing.Point(700, 74);
+            this.lblRecoveringValue.Location = new System.Drawing.Point(660, 74);
             this.lblRecoveringValue.Name = "lblRecoveringValue";
             this.lblRecoveringValue.Size = new System.Drawing.Size(14, 16);
             this.lblRecoveringValue.TabIndex = 28;
@@ -334,7 +364,7 @@
             // 
             this.lblReleaseReady.AutoSize = true;
             this.lblReleaseReady.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReleaseReady.Location = new System.Drawing.Point(552, 112);
+            this.lblReleaseReady.Location = new System.Drawing.Point(512, 112);
             this.lblReleaseReady.Name = "lblReleaseReady";
             this.lblReleaseReady.Size = new System.Drawing.Size(104, 16);
             this.lblReleaseReady.TabIndex = 27;
@@ -344,7 +374,7 @@
             // 
             this.lblRecovering.AutoSize = true;
             this.lblRecovering.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecovering.Location = new System.Drawing.Point(552, 74);
+            this.lblRecovering.Location = new System.Drawing.Point(512, 74);
             this.lblRecovering.Name = "lblRecovering";
             this.lblRecovering.Size = new System.Drawing.Size(77, 16);
             this.lblRecovering.TabIndex = 26;
@@ -354,7 +384,7 @@
             // 
             this.lblStableValue.AutoSize = true;
             this.lblStableValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStableValue.Location = new System.Drawing.Point(413, 146);
+            this.lblStableValue.Location = new System.Drawing.Point(382, 146);
             this.lblStableValue.Name = "lblStableValue";
             this.lblStableValue.Size = new System.Drawing.Size(14, 16);
             this.lblStableValue.TabIndex = 25;
@@ -364,7 +394,7 @@
             // 
             this.lblSeriousValue.AutoSize = true;
             this.lblSeriousValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSeriousValue.Location = new System.Drawing.Point(413, 112);
+            this.lblSeriousValue.Location = new System.Drawing.Point(382, 112);
             this.lblSeriousValue.Name = "lblSeriousValue";
             this.lblSeriousValue.Size = new System.Drawing.Size(14, 16);
             this.lblSeriousValue.TabIndex = 24;
@@ -374,7 +404,7 @@
             // 
             this.lblCriticalValue.AutoSize = true;
             this.lblCriticalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCriticalValue.Location = new System.Drawing.Point(413, 74);
+            this.lblCriticalValue.Location = new System.Drawing.Point(382, 74);
             this.lblCriticalValue.Name = "lblCriticalValue";
             this.lblCriticalValue.Size = new System.Drawing.Size(14, 16);
             this.lblCriticalValue.TabIndex = 23;
@@ -384,7 +414,7 @@
             // 
             this.lblStable.AutoSize = true;
             this.lblStable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStable.Location = new System.Drawing.Point(306, 146);
+            this.lblStable.Location = new System.Drawing.Point(275, 146);
             this.lblStable.Name = "lblStable";
             this.lblStable.Size = new System.Drawing.Size(46, 16);
             this.lblStable.TabIndex = 22;
@@ -394,7 +424,7 @@
             // 
             this.lblSerious.AutoSize = true;
             this.lblSerious.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSerious.Location = new System.Drawing.Point(306, 112);
+            this.lblSerious.Location = new System.Drawing.Point(275, 112);
             this.lblSerious.Name = "lblSerious";
             this.lblSerious.Size = new System.Drawing.Size(53, 16);
             this.lblSerious.TabIndex = 21;
@@ -404,7 +434,7 @@
             // 
             this.lblCritical.AutoSize = true;
             this.lblCritical.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCritical.Location = new System.Drawing.Point(306, 74);
+            this.lblCritical.Location = new System.Drawing.Point(275, 74);
             this.lblCritical.Name = "lblCritical";
             this.lblCritical.Size = new System.Drawing.Size(47, 16);
             this.lblCritical.TabIndex = 20;
@@ -494,13 +524,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(795, 494);
+            this.ClientSize = new System.Drawing.Size(1096, 592);
             this.Controls.Add(this.gpbSummaryReport);
             this.Controls.Add(this.gpbDataView);
             this.Controls.Add(this.gpbAnimalDetails);
             this.Controls.Add(this.lblTitle);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmMain";
             this.Text = "Baobab Ridge Records System";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.gpbAnimalDetails.ResumeLayout(false);
             this.gpbAnimalDetails.PerformLayout();
             this.gpbDataView.ResumeLayout(false);
