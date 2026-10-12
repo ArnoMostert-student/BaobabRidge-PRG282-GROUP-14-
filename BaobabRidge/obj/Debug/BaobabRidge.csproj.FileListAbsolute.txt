@@ -1,0 +1,11 @@
+C:\Users\arnos\source\repos\BaobabRidge-PRG282-GROUP-14-\BaobabRidge\bin\Debug\BaobabRidge.exe.config
+C:\Users\arnos\source\repos\BaobabRidge-PRG282-GROUP-14-\BaobabRidge\bin\Debug\BaobabRidge.exe
+C:\Users\arnos\source\repos\BaobabRidge-PRG282-GROUP-14-\BaobabRidge\bin\Debug\BaobabRidge.pdb
+C:\Users\arnos\source\repos\BaobabRidge-PRG282-GROUP-14-\BaobabRidge\obj\Debug\BaobabRidge.csproj.AssemblyReference.cache
+C:\Users\arnos\source\repos\BaobabRidge-PRG282-GROUP-14-\BaobabRidge\obj\Debug\BaobabRidge.Properties.Resources.resources
+C:\Users\arnos\source\repos\BaobabRidge-PRG282-GROUP-14-\BaobabRidge\obj\Debug\BaobabRidge.csproj.GenerateResource.cache
+C:\Users\arnos\source\repos\BaobabRidge-PRG282-GROUP-14-\BaobabRidge\obj\Debug\BaobabRidge.csproj.CoreCompileInputs.cache
+C:\Users\arnos\source\repos\BaobabRidge-PRG282-GROUP-14-\BaobabRidge\obj\Debug\BaobabRidge.exe
+C:\Users\arnos\source\repos\BaobabRidge-PRG282-GROUP-14-\BaobabRidge\obj\Debug\BaobabRidge.pdb
+C:\Users\arnos\source\repos\BaobabRidge-PRG282-GROUP-14-\BaobabRidge\obj\Debug\BaobabRidge.exe.config
+C:\Users\arnos\source\repos\BaobabRidge-PRG282-GROUP-14-\BaobabRidge\obj\Debug\BaobabRidge.frmMain.resources
