@@ -99,9 +99,11 @@ namespace BaobabRidge
             }
             Animal animal = new Animal(id,name,species,ageValue,scoreValue);
             fileHandler.AddAnimal(animal);
-            MessageBox.Show($"Animal has been succesfully added\nStatus: {animal.AnimalID}\nHousing Unit: {animal.HousingUnit}","Successful",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show($"Animal has been succesfully added\nStatus: {animal.Status}\nHousing Unit: {animal.HousingUnit}","Successful",MessageBoxButtons.OK,MessageBoxIcon.Information);
             ClearAllInputs();
-           
+            LoadAnimalsIntoGrid();
+
+
 
 
         }
@@ -114,5 +116,6 @@ namespace BaobabRidge
             txtSearchID.Clear();
             txtSpecies.Clear();
         }
+       
     }
 }
