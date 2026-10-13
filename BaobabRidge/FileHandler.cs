@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Text.RegularExpressions;
+using System.Runtime.Remoting.Messaging;
 
 namespace BaobabRidge
 {
@@ -93,9 +94,25 @@ namespace BaobabRidge
         // Appends a new animal record to animals.txt.
         public void AddAnimal(Animal animal)
         {
-            // TODO: Convert the animal properties into the required file format.
-            // TODO: Append one line without overwriting existing records.
-            // TODO: Handle file-related exceptions.
+           try
+            {
+                string record = $"{animal.AnimalID}|{animal.Name}|{animal.Species}|{animal.Age}|{animal.RecoveryScore}|{animal.Status}|{animal.HousingUnit}";
+                File.AppendAllText(filePath, record + Environment.NewLine, Encoding.UTF8);
+            }
+
+            catch(IOException)
+            {
+                MessageBox.Show("The animal file is currently in use by another program.", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch(UnauthorizedAccessException)
+            {
+                MessageBox.Show("Permission Denied. Cannot write to Animals.txt","File Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"An Unexpected error occured while saving: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         // Rewrites animals.txt with the updated animal record.
