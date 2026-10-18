@@ -274,6 +274,7 @@
             this.btnDelete.TabIndex = 13;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // dgvAnimals
             // 
@@ -493,6 +494,7 @@
             this.btnGenerateSummary.TabIndex = 13;
             this.btnGenerateSummary.Text = "Generate Summary";
             this.btnGenerateSummary.UseVisualStyleBackColor = true;
+            this.btnGenerateSummary.Click += new System.EventHandler(this.btnGenerateSummary_Click);
             // 
             // lblGenerateSummary
             // 

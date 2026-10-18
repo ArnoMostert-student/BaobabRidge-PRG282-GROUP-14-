@@ -125,12 +125,62 @@ namespace BaobabRidge
         }
 
         // Removes the specified animal from animals.txt.
-        public void DeleteAnimal(string animalID)
+        // Removes the first record matching the supplied animal ID.
+        public bool DeleteAnimal(string animalID)
         {
-            // TODO: Load the current records.
-            // TODO: Remove only the matching animal.
-            // TODO: Rewrite the file with the remaining records.
-            // TODO: Handle file-related exceptions.
-        }
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    MessageBox.Show("The animal file could not be found.");
+                    return false;
+                }
+
+                // Keep the original lines so unrelated records are preserved.
+                List<string> lines = File.ReadAllLines(filePath).ToList();
+
+                int indexToDelete = lines.FindIndex(line =>
+                {
+                    string[] fields = line.Split('|');
+
+                    return fields.Length == 7 &&
+                           fields[0].Trim().Equals(
+                               animalID.Trim(),
+                               StringComparison.OrdinalIgnoreCase);
+                });
+
+                if (indexToDelete == -1)
+                {
+                    MessageBox.Show("The selected animal was not found.");
+                    return false;
+                }
+
+                // Remove only the matching record.
+                lines.RemoveAt(indexToDelete);
+
+                // Write the remaining records back in their original order.
+                File.WriteAllLines(filePath, lines);
+
+                return true;
+            }
+            catch (IOException)
+            {
+                MessageBox.Show(
+                    "The animal file could not be accessed. Close any program using it and try again.");
+                return false;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show(
+                    "You do not have permission to modify the animal file.");
+                return false;
+            }
+        
+
+
+
     }
+            
+        }
 }
+
