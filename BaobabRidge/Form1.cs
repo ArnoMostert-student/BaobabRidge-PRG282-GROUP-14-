@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -44,142 +45,79 @@ namespace BaobabRidge
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void dgvAnimals_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            string id = txtAnimalID.Text.Trim().ToUpper();
+            string name = txtName.Text.Trim().ToUpper();
+            string species = txtSpecies.Text.Trim().ToUpper();
+            string age = txtAge.Text.Trim().ToUpper();
+            string score = txtScore.Text.Trim().ToUpper();
 
-
-
-
-
-            // Check whether an animal row has been selected.
-            if (dgvAnimals.SelectedRows.Count == 0)
+            if (!Regex.IsMatch(id,@"^WR-\d{4}$"))
             {
-                MessageBox.Show("Please select an animal to delete.");
+                MessageBox.Show("Animal ID should be within a specific format, WR-followed by 4 digits (Eg. WR-004");
+                txtAnimalID.Focus();
                 return;
             }
-
-            // Get the animal represented by the selected row.
-            Animal selectedAnimal =
-                dgvAnimals.SelectedRows[0].DataBoundItem as Animal;
-
-            if (selectedAnimal == null)
-            {
-                MessageBox.Show("Could not identify the selected animal.");
-                return;
-            }
-
-            // Ask the user to confirm the deletion.
-            DialogResult result = MessageBox.Show(
-                $"Delete {selectedAnimal.AnimalID} ({selectedAnimal.Name})? This cannot be undone.",
-                "Confirm Deletion",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-
-            // Stop if the user chooses No.
-            if (result != DialogResult.Yes)
-            {
-                return;
-            }
-
-            // Delete the selected animal from the file.
             FileHandler fileHandler = new FileHandler();
-            bool deleted = fileHandler.DeleteAnimal(
-                selectedAnimal.AnimalID);
+            int skipped;
+            var existingAnimals = fileHandler.LoadAnimals(out skipped);
 
-            if (deleted)
+            if (existingAnimals.Any(a => a.AnimalID.Equals(id,StringComparison.OrdinalIgnoreCase)))
             {
-                // Clear the fields only if they contain this animal's ID.
-                if (txtAnimalID.Text.Trim().Equals(
-                    selectedAnimal.AnimalID,
-                    StringComparison.OrdinalIgnoreCase))
-                {
-                    txtAnimalID.Clear();
-                    txtName.Clear();
-                    txtSpecies.Clear();
-                    txtAge.Clear();
-                    txtScore.Clear();
-                }
-
-                // Reload the table after successful deletion.
-                LoadAnimalsIntoGrid();
+                MessageBox.Show("This ID already exists. Animal ID must be unique, please try again.");
+                txtAnimalID.Focus();
+                return;
             }
+            if (string.IsNullOrEmpty(name) || name.Length > 30 || name.Contains("|"))
+            {
+                MessageBox.Show("Animal name must be filled in. Must be between 1 and 30 characters and cannot contain the pipe character (|)");
+                txtName.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(species) || species.Length > 30 || species.Contains("|"))
+            {
+                MessageBox.Show("Animal Species must be filled in. Must be between 1 and 30 characters and cannot contain the pipe character (|)");
+                txtSpecies.Focus();
+                return;
+            }
+            if (!int.TryParse(age, out int ageValue) || ageValue < 0 || ageValue > 100)
+            {
+                MessageBox.Show("Age must be between 0 and 100 years old. Must be a whole number.");
+                txtAge.Focus();
+                return;
+            }
+            if (!int.TryParse(score, out int scoreValue) || scoreValue < 0 || scoreValue > 100)
+            {
+                MessageBox.Show("Score must be between 0 and 100 years old. Must be a whole number.");
+                txtScore.Focus();
+                return;
+            }
+            Animal animal = new Animal(id,name,species,ageValue,scoreValue);
+            fileHandler.AddAnimal(animal);
+            MessageBox.Show($"Animal has been succesfully added\nStatus: {animal.Status}\nHousing Unit: {animal.HousingUnit}","Successful",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            ClearAllInputs();
+            LoadAnimalsIntoGrid();
+
+
+
+
         }
-
-        
-
-    
-
-        private void btnGenerateSummary_Click(object sender, EventArgs e)
+        private void ClearAllInputs()
         {
-
-
-
-            try
-            {
-                // Load the latest animal records from the file.
-                FileHandler fileHandler = new FileHandler();
-                List<Animal> animals =
-                    fileHandler.LoadAnimals(out int skippedLines);
-
-                // Generate and save the summary report.
-                SummaryReport summaryReport = new SummaryReport();
-                string reportText = summaryReport.GenerateReport(animals);
-
-                // Do not update the labels if report generation failed.
-                if (string.IsNullOrEmpty(reportText))
-                {
-                    return;
-                }
-
-                // Update the summary values displayed on the form.
-                int total = animals.Count;
-
-                lblTotalAnimalsValue.Text = total.ToString();
-
-                lblAverageAgeValue.Text = total == 0
-                    ? "N/A"
-                    : animals.Average(a => a.Age).ToString(
-                        "F2", System.Globalization.CultureInfo.InvariantCulture);
-
-                lblAverageScoreValue.Text = total == 0
-                    ? "N/A"
-                    : animals.Average(a => a.RecoveryScore).ToString(
-                        "F2", System.Globalization.CultureInfo.InvariantCulture);
-
-                lblCriticalValue.Text =
-                    animals.Count(a => a.Status == "Critical").ToString();
-
-                lblSeriousValue.Text =
-                    animals.Count(a => a.Status == "Serious").ToString();
-
-                lblStableValue.Text =
-                    animals.Count(a => a.Status == "Stable").ToString();
-
-                lblRecoveringValue.Text =
-                    animals.Count(a => a.Status == "Recovering").ToString();
-
-                lblReleaseReadyValue.Text =
-                    animals.Count(a => a.Status == "Release-Ready").ToString();
-
-                MessageBox.Show(
-                    "Summary report generated successfully.",
-                    "Summary Report",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            catch (IOException)
-            {
-                MessageBox.Show("The summary report could not be written.");
-            }
-            catch (UnauthorizedAccessException)
-            {
-                MessageBox.Show(
-                    "You do not have permission to write the summary report.");
-            }
+            txtAnimalID.Clear();
+            txtName.Clear();
+            txtAge.Clear();
+            txtScore.Clear();
+            txtSearchID.Clear();
+            txtSpecies.Clear();
         }
-
+       
     }
 }
 
