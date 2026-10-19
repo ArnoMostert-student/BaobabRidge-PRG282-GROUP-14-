@@ -115,9 +115,40 @@ namespace BaobabRidge
 
         }
 
-        // Rewrites animals.txt with the updated animal record.
+        // Rewrites animals.txt with the updated animal record.        
+        // Updates only the animal with the matching ID.
         public void UpdateAnimal(string animalID, Animal updatedAnimal)
         {
+                    
+            try
+            {
+                List<string> lines = File.ReadAllLines(filePath).ToList();
+
+                for (int i = 0; i < lines.Count; i++)
+                {
+                    string[] fields = lines[i].Split('|');
+
+                    if (fields.Length == 7 &&
+                        fields[0].Trim().Equals(
+                            animalID, StringComparison.OrdinalIgnoreCase))
+                    {
+                        lines[i] = $"{updatedAnimal.AnimalID}|{updatedAnimal.Name}|{updatedAnimal.Species}|{updatedAnimal.Age}|{updatedAnimal.RecoveryScore}|{updatedAnimal.Status}|{updatedAnimal.HousingUnit}";
+                        break;
+                    }
+                }
+
+                File.WriteAllLines(filePath, lines);
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("The animal file is being used. Please try again.");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("You do not have permission to change the animal file.");
+            }
+
+            
             // TODO: Load the current records.
             // TODO: Replace only the matching animal.
             // TODO: Rewrite the file with all records in their original order.
