@@ -287,17 +287,17 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(243, -6);
+            this.btnDelete.Location = new System.Drawing.Point(757, 419);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 17;
+            this.btnDelete.Text = "Delete";
             // 
             // gpbSummaryReport
             // 
             this.gpbSummaryReport.Controls.Add(this.lblReleaseReadyValue);
             this.gpbSummaryReport.Controls.Add(this.lblRecoveringValue);
             this.gpbSummaryReport.Controls.Add(this.lblReleaseReady);
-            this.gpbSummaryReport.Controls.Add(this.btnDelete);
             this.gpbSummaryReport.Controls.Add(this.lblRecovering);
             this.gpbSummaryReport.Controls.Add(this.lblStableValue);
             this.gpbSummaryReport.Controls.Add(this.lblSeriousValue);
@@ -311,10 +311,9 @@
             this.gpbSummaryReport.Controls.Add(this.lblAverageScore);
             this.gpbSummaryReport.Controls.Add(this.lblAverageAge);
             this.gpbSummaryReport.Controls.Add(this.lblTotalAnimals);
-            this.gpbSummaryReport.Controls.Add(this.btnGenerateSummary);
             this.gpbSummaryReport.Controls.Add(this.lblGenerateSummary);
             this.gpbSummaryReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbSummaryReport.Location = new System.Drawing.Point(18, 404);
+            this.gpbSummaryReport.Location = new System.Drawing.Point(19, 419);
             this.gpbSummaryReport.Name = "gpbSummaryReport";
             this.gpbSummaryReport.Size = new System.Drawing.Size(717, 176);
             this.gpbSummaryReport.TabIndex = 3;
@@ -483,10 +482,11 @@
             // 
             // btnGenerateSummary
             // 
-            this.btnGenerateSummary.Location = new System.Drawing.Point(345, -6);
+            this.btnGenerateSummary.Location = new System.Drawing.Point(869, 419);
             this.btnGenerateSummary.Name = "btnGenerateSummary";
             this.btnGenerateSummary.Size = new System.Drawing.Size(75, 23);
             this.btnGenerateSummary.TabIndex = 30;
+            this.btnGenerateSummary.Text = "Summary";
             // 
             // lblGenerateSummary
             // 
@@ -506,7 +506,9 @@
             this.Controls.Add(this.gpbSummaryReport);
             this.Controls.Add(this.gpbDataView);
             this.Controls.Add(this.gpbAnimalDetails);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.btnGenerateSummary);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmMain";
             this.Text = "Baobab Ridge Records System";

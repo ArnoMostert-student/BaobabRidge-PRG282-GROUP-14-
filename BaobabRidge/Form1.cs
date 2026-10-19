@@ -39,18 +39,18 @@ private void btnSearch_Click(object sender, EventArgs e)
             txtName.Text = row.Cells["Name"].Value.ToString();
             txtSpecies.Text = row.Cells["Species"].Value.ToString();
             txtAge.Text = row.Cells["Age"].Value.ToString();
-            txtRecoveryScore.Text = row.Cells["Recovery Score"].Value.ToString();
+            txtScore.Text = row.Cells["Recovery Score"].Value.ToString();
 
             selectedAnimal = new Animal(
                 txtAnimalID.Text,
                 txtName.Text,
                 txtSpecies.Text,
                 int.Parse(txtAge.Text),
-                int.Parse(txtRecoveryScore.Text));
+                int.Parse(txtScore.Text));
 
             txtAnimalID.ReadOnly = true;
             btnAdd.Enabled = false;
-            btnSaveChanges.Enabled = true;
+            btnSave.Enabled = true;
 
             return;
         }
@@ -76,7 +76,7 @@ private void btnSaveChanges_Click(object sender, EventArgs e)
     string name = txtName.Text.Trim();
     string species = txtSpecies.Text.Trim();
     int age = int.Parse(txtAge.Text);
-    int score = int.Parse(txtRecoveryScore.Text);
+    int score = int.Parse(txtScore.Text);
 
     // Reuse the same classification method used by Add.
     Animal updatedAnimal = new Animal(id, name, species, age, score);
@@ -129,18 +129,18 @@ if (e.RowIndex < 0)
     txtName.Text = row.Cells["Name"].Value.ToString();
     txtSpecies.Text = row.Cells["Species"].Value.ToString();
     txtAge.Text = row.Cells["Age"].Value.ToString();
-    txtRecoveryScore.Text = row.Cells["Recovery Score"].Value.ToString();
+    txtScore.Text = row.Cells["Recovery Score"].Value.ToString();
 
     selectedAnimal = new Animal(
         txtAnimalID.Text,
         txtName.Text,
         txtSpecies.Text,
         int.Parse(txtAge.Text),
-        int.Parse(txtRecoveryScore.Text));
+        int.Parse(txtScore.Text));
 
     txtAnimalID.ReadOnly = true;
     btnAdd.Enabled = false;
-    btnSaveChanges.Enabled = true;
+    btnSave.Enabled = true;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
