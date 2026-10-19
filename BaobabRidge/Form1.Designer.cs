@@ -292,6 +292,7 @@
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 17;
             this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // gpbSummaryReport
             // 
@@ -487,6 +488,7 @@
             this.btnGenerateSummary.Size = new System.Drawing.Size(75, 23);
             this.btnGenerateSummary.TabIndex = 30;
             this.btnGenerateSummary.Text = "Summary";
+            this.btnGenerateSummary.Click += new System.EventHandler(this.btnGenerateSummary_Click);
             // 
             // lblGenerateSummary
             // 
