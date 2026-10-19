@@ -18,6 +18,9 @@ namespace BaobabRidge
         {
             InitializeComponent();
         }
+        
+private Animal selectedAnimal = null;
+private FileHandler fileHandler = new FileHandler();
 
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -47,7 +50,27 @@ namespace BaobabRidge
 
         private void dgvAnimals_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+if (e.RowIndex < 0)
+        return;
 
+    DataGridViewRow row = dgvAnimals.Rows[e.RowIndex];
+
+    txtAnimalID.Text = row.Cells["Animal ID"].Value.ToString();
+    txtName.Text = row.Cells["Name"].Value.ToString();
+    txtSpecies.Text = row.Cells["Species"].Value.ToString();
+    txtAge.Text = row.Cells["Age"].Value.ToString();
+    txtRecoveryScore.Text = row.Cells["Recovery Score"].Value.ToString();
+
+    selectedAnimal = new Animal(
+        txtAnimalID.Text,
+        txtName.Text,
+        txtSpecies.Text,
+        int.Parse(txtAge.Text),
+        int.Parse(txtRecoveryScore.Text));
+
+    txtAnimalID.ReadOnly = true;
+    btnAdd.Enabled = false;
+    btnSaveChanges.Enabled = true;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
