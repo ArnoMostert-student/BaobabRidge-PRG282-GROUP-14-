@@ -22,6 +22,76 @@ namespace BaobabRidge
 private Animal selectedAnimal = null;
 private FileHandler fileHandler = new FileHandler();
 
+// Finds an animal by its exact ID.
+private void btnSearch_Click(object sender, EventArgs e)
+{
+    string searchID = txtSearch.Text.Trim();
+
+    foreach (DataGridViewRow row in dgvAnimals.Rows)
+    {
+        if (row.IsNewRow)
+            continue;
+
+        if (row.Cells["Animal ID"].Value.ToString()
+            .Equals(searchID, StringComparison.OrdinalIgnoreCase))
+        {
+            txtAnimalID.Text = row.Cells["Animal ID"].Value.ToString();
+            txtName.Text = row.Cells["Name"].Value.ToString();
+            txtSpecies.Text = row.Cells["Species"].Value.ToString();
+            txtAge.Text = row.Cells["Age"].Value.ToString();
+            txtRecoveryScore.Text = row.Cells["Recovery Score"].Value.ToString();
+
+            selectedAnimal = new Animal(
+                txtAnimalID.Text,
+                txtName.Text,
+                txtSpecies.Text,
+                int.Parse(txtAge.Text),
+                int.Parse(txtRecoveryScore.Text));
+
+            txtAnimalID.ReadOnly = true;
+            btnAdd.Enabled = false;
+            btnSaveChanges.Enabled = true;
+
+            return;
+        }
+    }
+
+    MessageBox.Show("Animal ID not found.");
+}
+
+// Validates and saves changes to the selected animal.
+private void btnSaveChanges_Click(object sender, EventArgs e)
+{
+    if (selectedAnimal == null)
+    {
+        MessageBox.Show("Please select an animal first.");
+        return;
+    }
+
+    // Reuse Member 2's validation method here.
+    if (!ValidateAnimal())
+        return;
+
+    string id = txtAnimalID.Text.Trim().ToUpper();
+    string name = txtName.Text.Trim();
+    string species = txtSpecies.Text.Trim();
+    int age = int.Parse(txtAge.Text);
+    int score = int.Parse(txtRecoveryScore.Text);
+
+    // Reuse the same classification method used by Add.
+    Animal updatedAnimal = new Animal(id, name, species, age, score);
+
+    ClassifyAnimal(updatedAnimal);
+
+    fileHandler.UpdateAnimal(id, updatedAnimal);
+
+    RefreshAnimalGrid();
+    ClearForm();
+}
+
+
+
+
         private void frmMain_Load(object sender, EventArgs e)
         {
             // Load animal records when the application starts.
@@ -140,7 +210,16 @@ if (e.RowIndex < 0)
             txtSearchID.Clear();
             txtSpecies.Clear();
         }
-       
+
+        
+       // Reloads the animal records and refreshes the grid.
+private void RefreshAnimalGrid()
+{
+    int skippedLines;
+
+    dgvAnimals.DataSource = null;
+    dgvAnimals.DataSource = fileHandler.LoadAnimals(out skippedLines);
+}
     }
 }
 
