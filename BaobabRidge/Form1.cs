@@ -25,7 +25,7 @@ private FileHandler fileHandler = new FileHandler();
 // Finds an animal by its exact ID.
 private void btnSearch_Click(object sender, EventArgs e)
 {
-    string searchID = txtSearch.Text.Trim();
+    string searchID = txtSearchID.Text.Trim();
 
     foreach (DataGridViewRow row in dgvAnimals.Rows)
     {
@@ -220,6 +220,9 @@ private void RefreshAnimalGrid()
     dgvAnimals.DataSource = null;
     dgvAnimals.DataSource = fileHandler.LoadAnimals(out skippedLines);
 }
+
+
+
     }
 }
 
