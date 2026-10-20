@@ -18,8 +18,56 @@ namespace BaobabRidge
         {
             InitializeComponent();
         }
-        
-private Animal selectedAnimal = null;
+        /// <summary>
+        /// Validates text inputs for ID format, length, pipes, and numeric ranges.
+        /// </summary>
+        private bool ValidateAnimal()
+        {
+            string id = txtAnimalID.Text.Trim().ToUpper();
+            string name = txtName.Text.Trim();
+            string species = txtSpecies.Text.Trim();
+            string age = txtAge.Text.Trim();
+            string score = txtScore.Text.Trim();
+
+            if (!Regex.IsMatch(id, @"^WR-\d{4}$"))
+            {
+                MessageBox.Show("Animal ID should be within a specific format, WR-followed by 4 digits (Eg. WR-0007).");
+                txtAnimalID.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(name) || name.Length > 30 || name.Contains("|"))
+            {
+                MessageBox.Show("Animal name must be filled in. Must be between 1 and 30 characters and cannot contain the pipe character (|)");
+                txtName.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(species) || species.Length > 30 || species.Contains("|"))
+            {
+                MessageBox.Show("Animal Species must be filled in. Must be between 1 and 30 characters and cannot contain the pipe character (|)");
+                txtSpecies.Focus();
+                return false;
+            }
+
+            if (!int.TryParse(age, out int ageValue) || ageValue < 0 || ageValue > 100)
+            {
+                MessageBox.Show("Age must be between 0 and 100 years old. Must be a whole number.");
+                txtAge.Focus();
+                return false;
+            }
+
+            if (!int.TryParse(score, out int scoreValue) || scoreValue < 0 || scoreValue > 100)
+            {
+                MessageBox.Show("Score must be between 0 and 100 years old. Must be a whole number.");
+                txtScore.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private Animal selectedAnimal = null;
 private FileHandler fileHandler = new FileHandler();
 
 // Finds an animal by its exact ID.
@@ -81,12 +129,12 @@ private void btnSaveChanges_Click(object sender, EventArgs e)
     // Reuse the same classification method used by Add.
     Animal updatedAnimal = new Animal(id, name, species, age, score);
 
-    ClassifyAnimal(updatedAnimal);
+  //  ClassifyAnimal(updatedAnimal);
 
     fileHandler.UpdateAnimal(id, updatedAnimal);
 
     RefreshAnimalGrid();
-    ClearForm();
+    ClearAllInputs();
 }
 
 
@@ -125,11 +173,11 @@ if (e.RowIndex < 0)
 
     DataGridViewRow row = dgvAnimals.Rows[e.RowIndex];
 
-    txtAnimalID.Text = row.Cells["Animal ID"].Value.ToString();
+    txtAnimalID.Text = row.Cells["AnimalID"].Value.ToString();
     txtName.Text = row.Cells["Name"].Value.ToString();
     txtSpecies.Text = row.Cells["Species"].Value.ToString();
     txtAge.Text = row.Cells["Age"].Value.ToString();
-    txtScore.Text = row.Cells["Recovery Score"].Value.ToString();
+    txtScore.Text = row.Cells["RecoveryScore"].Value.ToString();
 
     selectedAnimal = new Animal(
         txtAnimalID.Text,
@@ -145,61 +193,39 @@ if (e.RowIndex < 0)
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string id = txtAnimalID.Text.Trim().ToUpper();
-            string name = txtName.Text.Trim().ToUpper();
-            string species = txtSpecies.Text.Trim().ToUpper();
-            string age = txtAge.Text.Trim().ToUpper();
-            string score = txtScore.Text.Trim().ToUpper();
-
-            if (!Regex.IsMatch(id,@"^WR-\d{4}$"))
-            {
-                MessageBox.Show("Animal ID should be within a specific format, WR-followed by 4 digits (Eg. WR-004");
-                txtAnimalID.Focus();
+            // Reuse the validation method
+            if (!ValidateAnimal())
                 return;
-            }
+
+            // Get the validated values
+            string id = txtAnimalID.Text.Trim().ToUpper();
+            string name = txtName.Text.Trim();
+            string species = txtSpecies.Text.Trim();
+            int ageValue = int.Parse(txtAge.Text.Trim());
+            int scoreValue = int.Parse(txtScore.Text.Trim());
+
+            // Check ID uniqueness before saving
             FileHandler fileHandler = new FileHandler();
             int skipped;
             var existingAnimals = fileHandler.LoadAnimals(out skipped);
 
-            if (existingAnimals.Any(a => a.AnimalID.Equals(id,StringComparison.OrdinalIgnoreCase)))
+            if (existingAnimals.Any(a => a.AnimalID.Equals(id, StringComparison.OrdinalIgnoreCase)))
             {
                 MessageBox.Show("This ID already exists. Animal ID must be unique, please try again.");
                 txtAnimalID.Focus();
                 return;
             }
-            if (string.IsNullOrEmpty(name) || name.Length > 30 || name.Contains("|"))
-            {
-                MessageBox.Show("Animal name must be filled in. Must be between 1 and 30 characters and cannot contain the pipe character (|)");
-                txtName.Focus();
-                return;
-            }
-            if (string.IsNullOrEmpty(species) || species.Length > 30 || species.Contains("|"))
-            {
-                MessageBox.Show("Animal Species must be filled in. Must be between 1 and 30 characters and cannot contain the pipe character (|)");
-                txtSpecies.Focus();
-                return;
-            }
-            if (!int.TryParse(age, out int ageValue) || ageValue < 0 || ageValue > 100)
-            {
-                MessageBox.Show("Age must be between 0 and 100 years old. Must be a whole number.");
-                txtAge.Focus();
-                return;
-            }
-            if (!int.TryParse(score, out int scoreValue) || scoreValue < 0 || scoreValue > 100)
-            {
-                MessageBox.Show("Score must be between 0 and 100 years old. Must be a whole number.");
-                txtScore.Focus();
-                return;
-            }
-            Animal animal = new Animal(id,name,species,ageValue,scoreValue);
+
+            // Create and save the animal
+            Animal animal = new Animal(id, name, species, ageValue, scoreValue);
             fileHandler.AddAnimal(animal);
-            MessageBox.Show($"Animal has been succesfully added\nStatus: {animal.Status}\nHousing Unit: {animal.HousingUnit}","Successful",MessageBoxButtons.OK,MessageBoxIcon.Information);
+
+            MessageBox.Show($"Animal has been succesfully added\nStatus: {animal.Status}\nHousing Unit: {animal.HousingUnit}",
+                "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             ClearAllInputs();
             LoadAnimalsIntoGrid();
-
-
-
-
+            
         }
         private void ClearAllInputs()
         {
@@ -341,6 +367,16 @@ private void RefreshAnimalGrid()
                 MessageBox.Show(
                     "You do not have permission to write the summary report.");
             }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
