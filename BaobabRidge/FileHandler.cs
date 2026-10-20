@@ -94,21 +94,21 @@ namespace BaobabRidge
         // Appends a new animal record to animals.txt.
         public void AddAnimal(Animal animal)
         {
-           try
+            try
             {
                 string record = $"{animal.AnimalID}|{animal.Name}|{animal.Species}|{animal.Age}|{animal.RecoveryScore}|{animal.Status}|{animal.HousingUnit}";
                 File.AppendAllText(filePath, record + Environment.NewLine, Encoding.UTF8);
             }
 
-            catch(IOException)
+            catch (IOException)
             {
                 MessageBox.Show("The animal file is currently in use by another program.", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch(UnauthorizedAccessException)
+            catch (UnauthorizedAccessException)
             {
-                MessageBox.Show("Permission Denied. Cannot write to Animals.txt","File Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Permission Denied. Cannot write to Animals.txt", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"An Unexpected error occured while saving: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -119,7 +119,7 @@ namespace BaobabRidge
         // Updates only the animal with the matching ID.
         public void UpdateAnimal(string animalID, Animal updatedAnimal)
         {
-                    
+
             try
             {
                 List<string> lines = File.ReadAllLines(filePath).ToList();
@@ -148,7 +148,7 @@ namespace BaobabRidge
                 MessageBox.Show("You do not have permission to change the animal file.");
             }
 
-            
+
             // TODO: Load the current records.
             // TODO: Replace only the matching animal.
             // TODO: Rewrite the file with all records in their original order.
@@ -206,12 +206,7 @@ namespace BaobabRidge
                     "You do not have permission to modify the animal file.");
                 return false;
             }
-        
-
-
-
-    }
-            
         }
+    }
 }
 

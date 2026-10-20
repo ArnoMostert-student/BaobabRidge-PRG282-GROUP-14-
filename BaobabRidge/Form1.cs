@@ -68,78 +68,7 @@ namespace BaobabRidge
         }
 
         private Animal selectedAnimal = null;
-private FileHandler fileHandler = new FileHandler();
-
-// Finds an animal by its exact ID.
-private void btnSearch_Click(object sender, EventArgs e)
-{
-    string searchID = txtSearchID.Text.Trim();
-
-    foreach (DataGridViewRow row in dgvAnimals.Rows)
-    {
-        if (row.IsNewRow)
-            continue;
-
-        if (row.Cells["Animal ID"].Value.ToString()
-            .Equals(searchID, StringComparison.OrdinalIgnoreCase))
-        {
-            txtAnimalID.Text = row.Cells["Animal ID"].Value.ToString();
-            txtName.Text = row.Cells["Name"].Value.ToString();
-            txtSpecies.Text = row.Cells["Species"].Value.ToString();
-            txtAge.Text = row.Cells["Age"].Value.ToString();
-            txtScore.Text = row.Cells["Recovery Score"].Value.ToString();
-
-            selectedAnimal = new Animal(
-                txtAnimalID.Text,
-                txtName.Text,
-                txtSpecies.Text,
-                int.Parse(txtAge.Text),
-                int.Parse(txtScore.Text));
-
-            txtAnimalID.ReadOnly = true;
-            btnAdd.Enabled = false;
-            btnSave.Enabled = true;
-
-            return;
-        }
-    }
-
-    MessageBox.Show("Animal ID not found.");
-}
-
-// Validates and saves changes to the selected animal.
-private void btnSaveChanges_Click(object sender, EventArgs e)
-{
-    if (selectedAnimal == null)
-    {
-        MessageBox.Show("Please select an animal first.");
-        return;
-    }
-
-    // Reuse Member 2's validation method here.
-    if (!ValidateAnimal())
-        return;
-
-    string id = txtAnimalID.Text.Trim().ToUpper();
-    string name = txtName.Text.Trim();
-    string species = txtSpecies.Text.Trim();
-    int age = int.Parse(txtAge.Text);
-    int score = int.Parse(txtScore.Text);
-
-    // Reuse the same classification method used by Add.
-    Animal updatedAnimal = new Animal(id, name, species, age, score);
-
-  //  ClassifyAnimal(updatedAnimal);
-
-    fileHandler.UpdateAnimal(id, updatedAnimal);
-
-    RefreshAnimalGrid();
-    ClearAllInputs();
-}
-
-
-
-
+        private FileHandler fileHandler = new FileHandler();
         private void frmMain_Load(object sender, EventArgs e)
         {
             // Load animal records when the application starts.
@@ -168,27 +97,27 @@ private void btnSaveChanges_Click(object sender, EventArgs e)
 
         private void dgvAnimals_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-if (e.RowIndex < 0)
-        return;
+            if (e.RowIndex < 0)
+                    return;
 
-    DataGridViewRow row = dgvAnimals.Rows[e.RowIndex];
+                DataGridViewRow row = dgvAnimals.Rows[e.RowIndex];
 
-    txtAnimalID.Text = row.Cells["AnimalID"].Value.ToString();
-    txtName.Text = row.Cells["Name"].Value.ToString();
-    txtSpecies.Text = row.Cells["Species"].Value.ToString();
-    txtAge.Text = row.Cells["Age"].Value.ToString();
-    txtScore.Text = row.Cells["RecoveryScore"].Value.ToString();
+                txtAnimalID.Text = row.Cells["AnimalID"].Value.ToString();
+                txtName.Text = row.Cells["Name"].Value.ToString();
+                txtSpecies.Text = row.Cells["Species"].Value.ToString();
+                txtAge.Text = row.Cells["Age"].Value.ToString();
+                txtScore.Text = row.Cells["RecoveryScore"].Value.ToString();
 
-    selectedAnimal = new Animal(
-        txtAnimalID.Text,
-        txtName.Text,
-        txtSpecies.Text,
-        int.Parse(txtAge.Text),
-        int.Parse(txtScore.Text));
+                selectedAnimal = new Animal(
+                    txtAnimalID.Text,
+                    txtName.Text,
+                    txtSpecies.Text,
+                    int.Parse(txtAge.Text),
+                    int.Parse(txtScore.Text));
 
-    txtAnimalID.ReadOnly = true;
-    btnAdd.Enabled = false;
-    btnSave.Enabled = true;
+                txtAnimalID.ReadOnly = true;
+                btnAdd.Enabled = false;
+                btnSave.Enabled = true;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -227,25 +156,15 @@ if (e.RowIndex < 0)
             LoadAnimalsIntoGrid();
             
         }
-        private void ClearAllInputs()
-        {
-            txtAnimalID.Clear();
-            txtName.Clear();
-            txtAge.Clear();
-            txtScore.Clear();
-            txtSearchID.Clear();
-            txtSpecies.Clear();
-        }
 
-        
        // Reloads the animal records and refreshes the grid.
-private void RefreshAnimalGrid()
-{
-    int skippedLines;
+        private void RefreshAnimalGrid()
+        {
+            int skippedLines;
 
-    dgvAnimals.DataSource = null;
-    dgvAnimals.DataSource = fileHandler.LoadAnimals(out skippedLines);
-}
+            dgvAnimals.DataSource = null;
+            dgvAnimals.DataSource = fileHandler.LoadAnimals(out skippedLines);
+        }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -371,12 +290,86 @@ private void RefreshAnimalGrid()
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (selectedAnimal == null)
+            {
+                MessageBox.Show("Please select an animal first.");
+                return;
+            }
+
+            // Reuse Member 2's validation method here.
+            if (!ValidateAnimal())
+                return;
+
+            string id = txtAnimalID.Text.Trim().ToUpper();
+            string name = txtName.Text.Trim();
+            string species = txtSpecies.Text.Trim();
+            int age = int.Parse(txtAge.Text);
+            int score = int.Parse(txtScore.Text);
+
+            // Reuse the same classification method used by Add.
+            Animal updatedAnimal = new Animal(id, name, species, age, score);
+
+            //  ClassifyAnimal(updatedAnimal);
+
+            fileHandler.UpdateAnimal(id, updatedAnimal);
+
+            RefreshAnimalGrid();
+            ClearAllInputs();
+        }
+
+        private void ClearAllInputs()
+        {
+            txtAnimalID.Clear();
+            txtName.Clear();
+            txtAge.Clear();
+            txtScore.Clear();
+            txtSearchID.Clear();
+            txtSpecies.Clear();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearAllInputs();
+            btnAdd.Enabled = true;
+            txtAnimalID.ReadOnly = false;
 
         }
 
+        // Finds an animal by its exact ID.
         private void btnSearch_Click_1(object sender, EventArgs e)
         {
+            string searchID = txtSearchID.Text.Trim();
 
+            foreach (DataGridViewRow row in dgvAnimals.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                if (row.Cells["AnimalID"].Value.ToString()
+                    .Equals(searchID, StringComparison.OrdinalIgnoreCase))
+                {
+                    txtAnimalID.Text = row.Cells["AnimalID"].Value.ToString();
+                    txtName.Text = row.Cells["Name"].Value.ToString();
+                    txtSpecies.Text = row.Cells["Species"].Value.ToString();
+                    txtAge.Text = row.Cells["Age"].Value.ToString();
+                    txtScore.Text = row.Cells["RecoveryScore"].Value.ToString();
+
+                    selectedAnimal = new Animal(
+                        txtAnimalID.Text,
+                        txtName.Text,
+                        txtSpecies.Text,
+                        int.Parse(txtAge.Text),
+                        int.Parse(txtScore.Text));
+
+                    txtAnimalID.ReadOnly = true;
+                    btnAdd.Enabled = false;
+                    btnSave.Enabled = true;
+
+                    return;
+                }
+            }
+
+            MessageBox.Show("Animal ID not found.");
         }
     }
 }
