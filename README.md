@@ -76,6 +76,16 @@ Example:
 
 The file is stored in the same directory as the running application executable.
 
+## Technologies Used
+
+- **C#:** Application logic and data processing.
+- **Windows Forms:** Desktop user interface.
+- **.NET 8.0 or newer:** Application framework.
+- **Text Files:** Persistent storage of animal records and summary reports.
+- **Git:** Source code version control.
+- **GitHub:** Remote repository, collaboration, branches and pull requests.
+- **Visual Studio:** Development environment.
+  
 ## How to Build and Run
 
 ### Prerequisites
